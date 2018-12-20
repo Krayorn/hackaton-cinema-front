@@ -17,10 +17,20 @@ class VoteAll extends Component {
         }
 
         const currentDate = new Date()
+        const { user } = this.props
+
         if (currentDate.getDate() <= 15) {
-            this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
-          } else {
-            this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() - 1 })
+            }
+        } else {
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() })
+            }
         }
     }
 

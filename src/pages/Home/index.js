@@ -10,12 +10,22 @@ class Home extends Component {
     
     constructor(props) {
         super(props)
-        
+
         const currentDate = new Date()
+        const { user } = this.props
+
         if (currentDate.getDate() <= 15) {
-            this.props.getMovies(currentDate.getMonth() - 1)
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() - 1 })
+            }
         } else {
-            this.props.getMovies(currentDate.getMonth())
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() })
+            }
         }
     }
 
