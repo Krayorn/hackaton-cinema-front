@@ -17,10 +17,20 @@ class VoteAll extends Component {
         }
 
         const currentDate = new Date()
+        const { user } = this.props
+
         if (currentDate.getDate() <= 15) {
-            this.props.getMovies(currentDate.getMonth() - 1)
-          } else {
-            this.props.getMovies(currentDate.getMonth())
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() - 1 })
+            }
+        } else {
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() })
+            }
         }
     }
 
@@ -35,7 +45,7 @@ class VoteAll extends Component {
         }
 
         if (value && !isNaN(value.grade)) {
-            potVotes.push({...value, id: name})
+            potVotes.push({ ...value, id: name })
             this.setState({ potVotes })
         }
     }
@@ -45,18 +55,22 @@ class VoteAll extends Component {
     }
 
     render() {
+        const { movies } = this.props
+
         return (
             <RegularLayout>
                 <h1>Voter pour vos films</h1>
-                { this.props.movies.data && this.props.movies.data.map(movie => (
+                { movies.data && movies.data.map(movie => (
                     <div key={movie._id}>
                         <img src={movie.poster} alt="poster" />
                         <p>{movie.title}</p>
                         <p>{movie.directors}</p>
                         <Link to={`/movie/${movie._id}`}>En savoir plus</Link>
-                        <div id={movie._id}>
-                            <VoteForm isMultiple={true} movieId={movie._id} onChange={this.handleChange} />
-                        </div>
+                        { !movie.hasVoted && (
+                            <div id={movie._id}>
+                                <VoteForm isMultiple={true} movieId={movie._id} onChange={this.handleChange} />
+                            </div>
+                        )}
                     </div>
                 ))}
                 <button onClick={this.onSubmit}>Voter les films</button>
@@ -73,7 +87,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     voteMultiple: (payload) => dispatch(voteMultiple(payload)),
-    getMovies: (payload) => dispatch(getMovies(payload)),
+    getMovies: (payload) => dispatch(getMovies(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteAll)

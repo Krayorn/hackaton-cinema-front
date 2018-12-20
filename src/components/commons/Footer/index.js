@@ -1,11 +1,4 @@
-import React, { Component, Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
-
-// Redux
-import { logoutUser } from '../../../redux/actions/auth'
-import { connect } from 'react-redux'
-
-import logo from '../../../assets/logo.svg';
+import React, { Component } from 'react'
 
 import {
     Container,

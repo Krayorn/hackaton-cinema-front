@@ -4,3 +4,10 @@ export function getMovies(payload) {
         payload
     }
 }
+
+export function getQualifiedMovie(payload) {
+    return {
+        type: 'MDW_QUALIFIED_MOVIE',
+        payload
+    }
+}
