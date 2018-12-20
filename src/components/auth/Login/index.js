@@ -22,6 +22,10 @@ class Login extends Component {
         this.setState({ [name]: value })
     }
 
+    fakeLogin = () => {
+        this.props.loginUser({ username: 'fb', password: 'fb' })
+    }
+
     render() {
         if (this.props.user.token) {
             this.props.history.push('/')
@@ -37,7 +41,7 @@ class Login extends Component {
                     )}
                     <FormContainer>
                         <input
-                            onChange={(e) => this.handleChange('username', e.target.value)} 
+                            onChange={(e) => this.handleChange('username', e.target.value)}
                             type='text' placeholder='pseudo' name='username'
                         />
                         <input
@@ -53,7 +57,7 @@ class Login extends Component {
                             <p>ou</p>
                             <div className="short-line" />
                         </div>
-                        <button>Me connecter avec Facebook</button>
+                        <button onClick={this.fakeLogin} >Me connecter avec Facebook</button>
                     </ConnectContainer>
                 </Container>
             </SimpleLayout>
