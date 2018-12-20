@@ -22,9 +22,9 @@ class VoteAll extends Component {
             }
         }
 
-        if (value && value !== NaN) {
+        if (value && !isNaN(value.grade)) {
             potVotes.push({...value, id: name})
-            this.setState({ potVotes }, () => {console.log(this.state.potVotes)})
+            this.setState({ potVotes })
         }
     }
 
@@ -33,7 +33,6 @@ class VoteAll extends Component {
     }
 
     render() {
-        console.log(this.state)
         const movies = [
             {
                 _id: "5c1ab948ba920ea414c29df9",
