@@ -18,23 +18,23 @@ class VoteAll extends Component {
             potVotes: []
         }
 
-        // const currentDate = new Date()
-        // const { user } = this.props
+        const currentDate = new Date()
+        const { user } = this.props
 
-        // if (currentDate.getDate() <= 15) {
-        //     if (user && user.token) {
-        //         this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
-        //     } else {
-        //         this.props.getMovies({ month: currentDate.getMonth() - 1 })
-        //     }
-        // } else {
-        //     if (user && user.token) {
-        //         this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
-        //     } else {
-        //         this.props.getMovies({ month: currentDate.getMonth() })
-        //     }
-        // }
-        this.props.getMovies({ month: 0 })
+        if (currentDate.getDate() <= 15) {
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() - 1 })
+            }
+        } else {
+            if (user && user.token) {
+                this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+            } else {
+                this.props.getMovies({ month: currentDate.getMonth() })
+            }
+        }
+        // this.props.getMovies({ month: 0 })
     }
 
     handleChange = (name, value) => {

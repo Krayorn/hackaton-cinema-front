@@ -55,6 +55,7 @@ export const Menu = styled.div`
     flex-direction: column;
     background-color: white;
     transition: all .3s ease-in-out;
+    z-index: 10;
 `
 
 export const TopMenu = styled.div`
