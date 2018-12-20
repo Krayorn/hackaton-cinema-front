@@ -66,6 +66,18 @@ export const Item = styled(Link)`
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
+    position: relative;
+
+    &:after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f054";
+        position: absolute;
+        top: calc(50% - 5px);
+        right: 20px;
+        color: rgba(12, 40, 52, .4);
+        font-size: 10px;
+    }
 `
 
 export const CloseMenu = styled.div`

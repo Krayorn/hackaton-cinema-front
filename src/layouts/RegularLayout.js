@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 // Components
 import NavBar from '../components/commons/NavBar'
+import Footer from '../components/commons/Footer'
 
 // Style
 import {
@@ -17,6 +18,7 @@ class RegularLayout extends Component {
             <Container>
                 <NavBar user={this.props.user} />
                 {this.props.children}
+                <Footer></Footer>
             </Container>
         )
     }
