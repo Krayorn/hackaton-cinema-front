@@ -33,7 +33,7 @@ class NavBar extends Component {
             <Fragment>
                 <Header>
                     <LogoLink to={'/'}>
-                        <img className="logo" src={logo}></img>
+                        <img className="logo" alt="Logo Prix Brutus" src={logo}></img>
                     </LogoLink>
                     <Burger>
                         <span></span>
@@ -44,21 +44,21 @@ class NavBar extends Component {
                 <Menu>
                     <TopMenu>
                         <LogoLink to={'/'}>
-                            <img className="small-logo" src={logo}></img>
+                            <img className="small-logo" alt="Logo Prix Brutus" src={logo}></img>
                         </LogoLink>
                         <CloseMenu>
                             <span></span>
                             <span></span>
                         </CloseMenu>
                     </TopMenu>
-                    <CTA>Votez pour le lauréat du mois</CTA>
+                    <CTA to={'/vote'}>Votez pour le lauréat du mois</CTA>
                     <Item to={'/'}>Home</Item>
                     <Item to={'/'}>Films nominés</Item>
                     <Item to={'/'}>à propos</Item>
                     <Item to={'/profile'}>Mon compte</Item>
                     {
-                        //user &&
-                        <Logout onClick={this.logout} >Déconnexion<i class="fas fa-sign-out-alt"></i></Logout>
+                        user &&
+                        <Logout onClick={this.logout} >Déconnexion<i className="fas fa-sign-out-alt"></i></Logout>
                     }
                 </Menu>
             </Fragment>
@@ -67,7 +67,7 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.auth.user
+    user: state.auth.user || JSON.parse(localStorage.getItem('user'))
 })
 
 const mapDispatchToProps = (dispatch) => ({

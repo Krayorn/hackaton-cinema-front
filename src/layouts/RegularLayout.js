@@ -23,7 +23,7 @@ class RegularLayout extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.auth.user || false
+    user: state.auth.user || JSON.parse(localStorage.getItem('user')) || false
 })
 
 const mapDispatchToProps = (dispatch) => ({

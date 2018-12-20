@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // Layout
-import RegularLayout from '../../../layouts/RegularLayout'
+import RegularLayout from '../../layouts/RegularLayout'
 
 class Home extends Component {
     state = {}
@@ -14,7 +14,7 @@ class Home extends Component {
             <RegularLayout>
                 Hello
             </RegularLayout>
-            )
+          )
     }
 }
 

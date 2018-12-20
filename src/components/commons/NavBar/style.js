@@ -92,7 +92,7 @@ export const CloseMenu = styled.div`
     }
 `
 
-export const CTA = styled.div`
+export const CTA = styled(Link)`
     height: 50px;
     margin: 10px 20px;
     background-color: #DD5F5F;
@@ -101,6 +101,7 @@ export const CTA = styled.div`
     align-items: center;
     font-weight: 600;
     color: white;
+    text-decoration: none;
 `
 
 export const Logout = styled.div`
