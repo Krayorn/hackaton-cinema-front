@@ -1,4 +1,4 @@
-const baseURL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:' + 9000
+const baseURL = process.env.NODE_ENV === 'production' ? '' : 'http://hackathon.spau.lt:' + 9000
 
 export async function getJsonResponse (response) {
     const json = await response.json()
