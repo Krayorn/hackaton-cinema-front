@@ -5,11 +5,18 @@ import { withRouter } from 'react-router-dom'
 import { logoutUser } from '../../../redux/actions/auth'
 import { connect } from 'react-redux'
 
+import logo from '../../../assets/logo.svg';
+
 import {
-    Container,
-    UserSection,
+    Header,
+    LogoLink,
+    Burger,
+    Menu,
+    TopMenu,
+    CloseMenu,
     Item,
-    FakeItem,
+    Logout,
+    CTA
 } from './style'
 
 class NavBar extends Component {
@@ -23,22 +30,38 @@ class NavBar extends Component {
         const { user } = this.props
 
         return (
-            <Container>
-                <Item to={'/'}>Home</Item>
-                <UserSection>
+            <Fragment>
+                <Header>
+                    <LogoLink to={'/'}>
+                        <img className="logo" src={logo}></img>
+                    </LogoLink>
+                    <Burger>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </Burger>
+                </Header>
+                <Menu>
+                    <TopMenu>
+                        <LogoLink to={'/'}>
+                            <img className="small-logo" src={logo}></img>
+                        </LogoLink>
+                        <CloseMenu>
+                            <span></span>
+                            <span></span>
+                        </CloseMenu>
+                    </TopMenu>
+                    <CTA>Votez pour le lauréat du mois</CTA>
+                    <Item to={'/'}>Home</Item>
+                    <Item to={'/'}>Films nominés</Item>
+                    <Item to={'/'}>à propos</Item>
+                    <Item to={'/profile'}>Mon compte</Item>
                     {
-                        user
-                        ? <Fragment>
-                            <Item to={'/profile'}>{user.username}</Item>
-                            <FakeItem onClick={this.logout} >Logout</FakeItem>
-                        </Fragment>
-                        : <Fragment>
-                            <Item to={'/login'}>Login</Item>
-                            <Item to={'/register'}>Register</Item>
-                        </Fragment>
+                        //user &&
+                        <Logout onClick={this.logout} >Déconnexion<i class="fas fa-sign-out-alt"></i></Logout>
                     }
-                </UserSection>
-            </Container>
+                </Menu>
+            </Fragment>
         )
     }
 }

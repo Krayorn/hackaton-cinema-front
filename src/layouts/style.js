@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    margin: -8px;
+    width: 100vw;
+    max-width: 600px;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: hidden;
+    border: 1px solid #D9DDE8;
 `
