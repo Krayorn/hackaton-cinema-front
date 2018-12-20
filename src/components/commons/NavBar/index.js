@@ -20,10 +20,15 @@ import {
 } from './style'
 
 class NavBar extends Component {
+    state = { open: false }
 
     logout = () => {
         this.props.logoutUser()
         this.props.history.push('/login')
+    }
+
+    handleClick = () => {
+        this.setState((prevState) => ({open: !prevState.open}))
     }
 
     render() {
@@ -35,18 +40,18 @@ class NavBar extends Component {
                     <LogoLink to={'/'}>
                         <img className="logo" alt="Logo Prix Brutus" src={logo}></img>
                     </LogoLink>
-                    <Burger>
+                    <Burger onClick={this.handleClick} >
                         <span></span>
                         <span></span>
                         <span></span>
                     </Burger>
                 </Header>
-                <Menu>
+                <Menu open={this.state.open} >
                     <TopMenu>
                         <LogoLink to={'/'}>
                             <img className="small-logo" alt="Logo Prix Brutus" src={logo}></img>
                         </LogoLink>
-                        <CloseMenu>
+                        <CloseMenu onClick={this.handleClick} >
                             <span></span>
                             <span></span>
                         </CloseMenu>

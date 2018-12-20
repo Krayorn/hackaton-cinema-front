@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import RegularLayout from '../../layouts/RegularLayout'
 import VoteForm from '../../components/commons/VoteForm'
+import Button from '../../components/commons/Button'
 
 import { voteMultiple } from '../../redux/actions/vote'
 import { getMovies } from '../../redux/actions/movie'
+
+import { Container } from './style'
 
 class VoteAll extends Component {
 
@@ -16,27 +18,28 @@ class VoteAll extends Component {
             potVotes: []
         }
 
-        const currentDate = new Date()
-        const { user } = this.props
+        // const currentDate = new Date()
+        // const { user } = this.props
 
-        if (currentDate.getDate() <= 15) {
-            if (user && user.token) {
-                this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
-            } else {
-                this.props.getMovies({ month: currentDate.getMonth() - 1 })
-            }
-        } else {
-            if (user && user.token) {
-                this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
-            } else {
-                this.props.getMovies({ month: currentDate.getMonth() })
-            }
-        }
+        // if (currentDate.getDate() <= 15) {
+        //     if (user && user.token) {
+        //         this.props.getMovies({ month: currentDate.getMonth() - 1, token: this.props.user.token })
+        //     } else {
+        //         this.props.getMovies({ month: currentDate.getMonth() - 1 })
+        //     }
+        // } else {
+        //     if (user && user.token) {
+        //         this.props.getMovies({ month: currentDate.getMonth(), token: this.props.user.token })
+        //     } else {
+        //         this.props.getMovies({ month: currentDate.getMonth() })
+        //     }
+        // }
+        this.props.getMovies({ month: 0 })
     }
 
     handleChange = (name, value) => {
         const potVotes = this.state.potVotes
-        
+
         if (potVotes.length !== 0) {
             const index = potVotes.findIndex(x => x.id === name)
             if (index !== -1) {
@@ -56,24 +59,47 @@ class VoteAll extends Component {
 
     render() {
         const { movies } = this.props
+        const currentDate = new Date()
+        const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];;
 
         return (
             <RegularLayout>
-                <h1>Voter pour vos films</h1>
-                { movies.data && movies.data.map(movie => (
-                    <div key={movie._id}>
-                        <img src={movie.poster} alt="poster" />
-                        <p>{movie.title}</p>
-                        <p>{movie.directors}</p>
-                        <Link to={`/movie/${movie._id}`}>En savoir plus</Link>
-                        { !movie.hasVoted && (
-                            <div id={movie._id}>
-                                <VoteForm isMultiple={true} movieId={movie._id} onChange={this.handleChange} />
-                            </div>
-                        )}
+                <Container>
+                    <div className="vote-header">
+                        <h3>{`${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`}</h3>
+                        <h2>Quels films avez-vous vus ce mois-ci ?</h2>
+                        <form className="search-form">
+                            <input type="search" placeholder="Chercher un film" />
+                            <Button text="OK" />
+                        </form>
                     </div>
-                ))}
-                <button onClick={this.onSubmit}>Voter les films</button>
+                    <div className="movies-container">
+                        { movies.data && movies.data.map(movie => (
+                            !movie.hasVoted && (
+                                <div key={movie._id}>
+                                    <div className="movie-info">
+                                        {/* <input type="checkbox" id={movie._id} /> */}
+                                        <p>{movie.title}</p>
+                                        <span className="chevron chevron-down"/>
+                                    </div>
+                                    <div className="separator" />
+                                    <VoteForm 
+                                        isMultiple={true} 
+                                        movieId={movie._id} 
+                                        onChange={this.handleChange}
+                                        className="vote-form"
+                                    />
+                                </div>
+                            )
+                        ))}
+                    </div>
+                    <Button
+                        onClick={this.onSubmit}
+                        text="Valider"
+                        className="submit-button"
+                        style={{ width: '100%' }}
+                    />
+                </Container>
             </RegularLayout>
         )
     }

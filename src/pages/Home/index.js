@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import RegularLayout from '../../layouts/RegularLayout'
 import Movie from '../../components/movies/movie'
@@ -33,7 +32,7 @@ import {
 } from './style'
 
 class Home extends Component {
-    
+
     constructor(props) {
         super(props)
 
@@ -143,7 +142,7 @@ class Home extends Component {
         )
     }
 }
-    
+
 const mapStateToProps = (state) => ({
     movies: state.movie.movies,
     qualifiedMovie: state.movie.qualifiedMovie
