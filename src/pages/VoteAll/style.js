@@ -113,10 +113,38 @@ export const Container = styled.div`
                 font-weight: 100;
                 color: rgb(12, 40, 52);
                 font-size: 18px;
+
+                span {
+                    color: rgba(12, 40, 52, 0.4);
+                    font-size: 14px;
+                    font-weight: 100;
+                }
             }
 
             input {
                 width: 100%;
+            }
+
+            .slider-container {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                
+                .slider {
+                    background-color: rgb(217, 221, 232);
+                    height: 10px;
+                }
+
+                .range {
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        color: rgba(12, 40, 52, 0.4);
+                        font-size: 14px;
+                        font-weight: 100;
+                    }
+                }
             }
 
             label, input {

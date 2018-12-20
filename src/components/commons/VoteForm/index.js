@@ -65,34 +65,54 @@ class VoteForm extends Component {
         return (
             <Fragment>
                 <Form>
-                    <label htmlFor="acting">Jeu d'acteur</label>
-                    <input 
-                        type="number" min="1" max="10" name="acting"
-                        onChange={(e) => this.handleChange('acting', e.target.value)}
-                    />
-                    <label htmlFor="scenario">Scénario</label>
+                    <label htmlFor="scenario">
+                        Scénario&nbsp;
+                        <span>(facultatif)</span>
+                    </label>
                     <input 
                         type="number" min="1" max="10" name="scenario"
                         onChange={(e) => this.handleChange('scenario', e.target.value)}
                     />
-                    <label htmlFor="soundtrack">Bande son</label>
-                    <input 
-                        type="number" min="1" max="10" name="soundtrack"
-                        onChange={(e) => this.handleChange('soundtrack', e.target.value)}
-                    />
-                    <label htmlFor="esthetic">Direction artistique (esthétique)</label>
+                    <label htmlFor="esthetic">
+                        Esthétisme&nbsp;
+                        <span>(facultatif)</span>
+                    </label>
                     <input 
                         type="number" min="1" max="10" name="esthetic"
                         onChange={(e) => this.handleChange('esthetic', e.target.value)}
                     />
+                    <label htmlFor="soundtrack">
+                        Bande son&nbsp;
+                        <span>(facultatif)</span>    
+                    </label>
+                    <input 
+                        type="number" min="1" max="10" name="soundtrack"
+                        onChange={(e) => this.handleChange('soundtrack', e.target.value)}
+                    />
+                    <label htmlFor="acting">
+                        Jeu d'acteur&nbsp;
+                        <span>(facultatif)</span>
+                    </label>
+                    <input 
+                        type="number" min="1" max="10" name="acting"
+                        onChange={(e) => this.handleChange('acting', e.target.value)}
+                    />
                     {!isMultiple && <button onClick={this.onSubmit}>Voter</button>}
                 </Form>
+                <div className="separator" />
                 <Form>
                     <label>Note globale</label>
                     <input 
                         type="number" min="1" max="10" name="note"
                         onChange={(e) => this.handleChange('grade', e.target.value)}
                     />
+                    {/* <div className="slider-container">
+                        <div className="slider"></div>
+                        <div className="range">
+                            <span>0</span>
+                            <span>10</span>
+                        </div>
+                    </div> */}
                     {!isMultiple && <button onClick={this.onSubmit}>Voter</button>}
                 </Form>
                 { errors.length > 0 && errors.map((err, index) => (
