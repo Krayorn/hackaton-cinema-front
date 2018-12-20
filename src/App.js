@@ -12,6 +12,7 @@ import Profile from './components/auth/Profile'
 import Home from './pages/Home'
 // import Vote from './pages/Vote'
 import VoteAll from './pages/VoteAll'
+import Movie from './pages/Movie'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(
@@ -19,7 +20,7 @@ const store = createStore(reducers, composeEnhancers(
 ))
 
 class App extends Component {
-    
+
     render() {
         return (
             <Provider store={store} >
@@ -28,8 +29,11 @@ class App extends Component {
             <Route path={'/login'} component={Login} />
             <Route path={'/register'} component={Register} />
             <Route path={'/profile'} component={Profile} />
-            
+
             <Route path={'/vote'} component={VoteAll} />
+
+            <Route path={'/movie/:id'} component={Movie} />
+
             <Route path={'/'} component={Home} />
             </Switch>
             </Router>

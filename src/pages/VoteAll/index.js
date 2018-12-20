@@ -36,7 +36,7 @@ class VoteAll extends Component {
 
     handleChange = (name, value) => {
         const potVotes = this.state.potVotes
-        
+
         if (potVotes.length !== 0) {
             const index = potVotes.findIndex(x => x.id === name)
             if (index !== -1) {
