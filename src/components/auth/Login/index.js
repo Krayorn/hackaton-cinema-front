@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-// Redux
 import { loginUser } from '../../../redux/actions/auth'
 import { connect } from 'react-redux'
 
-// Layout
-import RegularLayout from '../../../layouts/RegularLayout'
+import SimpleLayout from '../../../layouts/SimpleLayout'
 
-// Components
 import Button from '../../commons/Button'
-import Form from '../../commons/Form'
+
+import { Container, FormContainer, ConnectContainer } from '../style'
 
 class Login extends Component {
     state = {}
@@ -21,33 +19,44 @@ class Login extends Component {
     }
 
     handleChange = (name, value) => {
-        this.setState({
-            [name]: value
-        })
+        this.setState({ [name]: value })
     }
 
     render() {
-
         if (this.props.user.token) {
             this.props.history.push('/')
         }
 
         return (
-            <RegularLayout>
-                {
-                    this.props.errors.length > 0 &&
-                    this.props.errors.map(err => (
-                        <div key={err} >
-                            {err}
+            <SimpleLayout>
+                <Container>
+                    { this.props.errors.length > 0 && (
+                        <div className="errors-container">
+                            {this.props.errors.map(err => <p key={err}>{err}</p>)}
                         </div>
-                    ))
-                }
-                <Form>
-                    <input onChange={(e) => this.handleChange('username', e.target.value)} type='text' placeholder='username' name='username'></input>
-                    <input onChange={(e) => this.handleChange('password', e.target.value)} type='password' placeholder='password' name='password' />
-                    <Button onClick={this.loginUser} text='Login !' />
-                </Form>
-            </RegularLayout>
+                    )}
+                    <FormContainer>
+                        <input
+                            onChange={(e) => this.handleChange('username', e.target.value)} 
+                            type='text' placeholder='pseudo' name='username'
+                        />
+                        <input
+                            onChange={(e) => this.handleChange('password', e.target.value)}
+                            type='password' placeholder='mot de passe' name='password'
+                        />
+                        <p>Mot de passe oublié ?</p>
+                        <Button onClick={this.loginUser} text="Me connecter" />
+                    </FormContainer>
+                    <ConnectContainer>
+                        <div className="separator">
+                            <div className="short-line" />
+                            <p>ou</p>
+                            <div className="short-line" />
+                        </div>
+                        <button>Me connecter avec Facebook</button>
+                    </ConnectContainer>
+                </Container>
+            </SimpleLayout>
         )
     }
 }
