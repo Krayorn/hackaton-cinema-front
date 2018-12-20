@@ -8,7 +8,7 @@ import { getMovies } from '../../redux/actions/movie'
 import {
     StyledImg,
     PlayerButton,
-    Triangle,
+    StyledI,
     Container,
     Title,
     From,
@@ -52,7 +52,7 @@ class Movie extends Component {
                 <Container>
                     <StyledImg src={movie.poster} ></StyledImg>
                     <PlayerButton>
-                        <Triangle />
+                        <StyledI className="fas fa-play"></StyledI>
                     </PlayerButton>
                 </Container>
                 <DataContainer>
