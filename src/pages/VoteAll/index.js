@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import RegularLayout from '../../layouts/RegularLayout'
 import VoteForm from '../../components/commons/VoteForm'
 
 import { voteMultiple } from '../../redux/actions/vote'
+import { getMovies } from '../../redux/actions/movie'
 
 class VoteAll extends Component {
 
-    state = {
-        potVotes: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            potVotes: []
+        }
+
+        const currentDate = new Date()
+        if (currentDate.getDate() <= 15) {
+            this.props.getMovies(currentDate.getMonth() - 1)
+          } else {
+            this.props.getMovies(currentDate.getMonth())
+        }
     }
 
     handleChange = (name, value) => {
@@ -33,35 +45,15 @@ class VoteAll extends Component {
     }
 
     render() {
-        const movies = [
-            {
-                _id: "5c1ab948ba920ea414c29df9",
-                title: "Nos Jours Bénis",
-                poster: "https://media.senscritique.com/media/000017842378/source_big/Nos_Jours_Benis.jpg",
-                date_release: "2018-01-01",
-                synopsis: "Adèle, une femme de 85 ans, est confrontée à la perte de son mari, après 63 ans de vie partagée. Un rêve inattendu amènera Adele à revivre les derniers moments de leur vie, au musée. Elle sera capable de surmonter la douleur.",
-                directors: "Juliette de Marcillac",
-                actors: "Brigitte Roüan",
-                genres: "Drame"
-            },
-            {
-                _id: "5c1ab948ba920ea414c29df6",
-                title: "Blablabla",
-                poster: "https://media.senscritique.com/media/000017842378/source_big/Nos_Jours_Benis.jpg",
-                date_release: "2018-01-01",
-                synopsis: "Adèle, une femme de 85 ans, est confrontée à la perte de son mari, après 63 ans de vie partagée. Un rêve inattendu amènera Adele à revivre les derniers moments de leur vie, au musée. Elle sera capable de surmonter la douleur.",
-                directors: "Juliette de Marcillac",
-                actors: "Brigitte Roüan",
-                genres: "Drame"
-            }
-        ]
-
         return (
             <RegularLayout>
-                <h1>Voter pour votre film</h1>
-                { (movies || []).map(movie => (
+                <h1>Voter pour vos films</h1>
+                { this.props.movies.data && this.props.movies.data.map(movie => (
                     <div key={movie._id}>
+                        <img src={movie.poster} alt="poster" />
                         <p>{movie.title}</p>
+                        <p>{movie.directors}</p>
+                        <Link to={`/movie/${movie._id}`}>En savoir plus</Link>
                         <div id={movie._id}>
                             <VoteForm isMultiple={true} movieId={movie._id} onChange={this.handleChange} />
                         </div>
@@ -75,11 +67,13 @@ class VoteAll extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.auth.user || JSON.parse(localStorage.getItem('user')) || false,
-    errors: state.vote.errors
+    errors: state.vote.errors,
+    movies: state.movie.movies
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    voteMultiple: (payload) => dispatch(voteMultiple(payload))
+    voteMultiple: (payload) => dispatch(voteMultiple(payload)),
+    getMovies: (payload) => dispatch(getMovies(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteAll)
