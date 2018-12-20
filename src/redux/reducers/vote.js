@@ -11,6 +11,16 @@ const vote = (state = { errors: [] }, action) => {
                 errors: action.payload.response.errors || []
             })
         
+        case 'VOTE_MULTIPLE_OK':
+            return Object.assign({}, state, {
+                errors: []
+            })
+
+        case 'VOTE_MULTIPLE_ERROR':
+            return Object.assign({}, state, {
+                errors: action.payload.response.errors || []
+            })
+        
         default:
             return state
     }

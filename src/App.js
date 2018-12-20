@@ -10,31 +10,32 @@ import Register from './components/auth/Register'
 import Profile from './components/auth/Profile'
 
 import Home from './pages/Home'
-import Vote from './pages/Vote'
+// import Vote from './pages/Vote'
+import VoteAll from './pages/VoteAll'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(
-  middlewares
+    middlewares
 ))
 
 class App extends Component {
-  
-  render() {
-    return (
-      <Provider store={store} >
-        <Router>
-          <Switch>
+    
+    render() {
+        return (
+            <Provider store={store} >
+            <Router>
+            <Switch>
             <Route path={'/login'} component={Login} />
             <Route path={'/register'} component={Register} />
             <Route path={'/profile'} component={Profile} />
-
-            <Route path={'/vote'} component={Vote} />
+            
+            <Route path={'/vote'} component={VoteAll} />
             <Route path={'/'} component={Home} />
-          </Switch>
-        </Router>
-      </Provider>
-    )
-  }
+            </Switch>
+            </Router>
+            </Provider>
+        )
+    }
 }
 
 export default App

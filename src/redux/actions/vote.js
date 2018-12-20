@@ -4,3 +4,10 @@ export function vote(payload) {
         payload
     }
 }
+
+export function voteMultiple(payload) {
+    return {
+        type: 'MDW_VOTE_MULTIPLE',
+        payload
+    }
+}
