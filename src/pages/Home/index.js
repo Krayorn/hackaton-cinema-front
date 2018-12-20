@@ -7,7 +7,7 @@ import RegularLayout from '../../layouts/RegularLayout'
 import { getMovies } from '../../redux/actions/movie'
 
 class Home extends Component {
-    
+
     constructor(props) {
         super(props)
 
@@ -45,7 +45,7 @@ class Home extends Component {
         )
     }
 }
-    
+
 const mapStateToProps = (state) => ({
     movies: state.movie.movies
 })

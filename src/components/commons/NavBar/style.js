@@ -18,11 +18,11 @@ export const Header = styled.div`
 
 export const LogoLink = styled(Link)`
     img.logo {
-        height: 40px; 
+        height: 40px;
     }
 
     img.small-logo {
-        height: 25px; 
+        height: 25px;
     }
 `
 
@@ -44,7 +44,11 @@ export const Burger = styled.div`
 export const Menu = styled.div`
     position: absolute;
     top: 0;
-    left: -100%; /* TODO: Mettre à 0 pour ouvrir, 100% pour fermer */
+    ${({open}) => {
+        return open
+            ? `left: 0%;`
+            : `left: -100%;`
+    }}
     width: 100%;
     height: 100vh;
     display: flex;

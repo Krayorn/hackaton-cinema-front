@@ -7,6 +7,6 @@ export const Container = styled.div`
     margin: 0 auto;
     padding-bottom: 600px;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
     border: 1px solid #D9DDE8;
 `
