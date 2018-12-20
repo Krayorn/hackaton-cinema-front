@@ -14,11 +14,17 @@ export const PlayerButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(210deg);
     margin-right: 35px;
     margin-top: -25px;
     cursor: pointer;
 `
+
+export const StyledI = styled.i`
+    margin-left: 4px;
+    color: white;
+    font-size: 20px;
+`
+
 
 export const Container = styled.div`
     display: flex;
@@ -30,36 +36,6 @@ export const DataContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding:0px 20px;
-`
-
-export const Triangle = styled.div`
-    position: relative;
-    background-color: white;
-    text-align: left;
-    margin-top: -10px;
-    &:before,
-    &:after {
-        content: '';
-        position: absolute;
-        background-color: inherit;
-    }
-    &,
-    &:before,
-    &:after {
-        width:  15px;
-        height: 15px;
-        border-top-right-radius: 30%;
-    }
-
-    & {
-        transform: rotate(-60deg) skewX(-30deg) scale(1,.866);
-    }
-    &:before {
-        transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
-    }
-    &:after {
-        transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
-    }
 `
 
 export const Title = styled.h2`
