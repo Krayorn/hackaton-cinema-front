@@ -13,6 +13,12 @@ const voteMiddleware = {
                 err => dispatch({ type: 'GET_MOVIES_ERROR', payload: { response: err } })
             )
         }
+    },
+    MDW_QUALIFIED_MOVIE: (payload, dispatch) => {
+        restGet(`/movie/qualifiedMovie?month=${payload}`).then(
+            data => dispatch({ type: 'QUALIFIED_MOVIE_OK', payload: { response: data } }),
+            err => dispatch({ type: 'QUALIFIED_MOVIE_ERROR', payload: { response: err } })
+        )
     }
 }
 

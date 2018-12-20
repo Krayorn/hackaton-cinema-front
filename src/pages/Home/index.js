@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import RegularLayout from '../../layouts/RegularLayout'
 
-import { getMovies } from '../../redux/actions/movie'
+import { getMovies, getQualifiedMovie } from '../../redux/actions/movie'
 
 class Home extends Component {
     
@@ -13,6 +13,8 @@ class Home extends Component {
 
         const currentDate = new Date()
         const { user } = this.props
+
+        this.props.getQualifiedMovie(currentDate.getMonth() - 1)
 
         if (currentDate.getDate() <= 15) {
             if (user && user.token) {
@@ -47,11 +49,13 @@ class Home extends Component {
 }
     
 const mapStateToProps = (state) => ({
-    movies: state.movie.movies
+    movies: state.movie.movies,
+    qualifiedMovie: state.movie.qualifiedMovie
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getMovies: (payload) => dispatch(getMovies(payload))
+    getMovies: (payload) => dispatch(getMovies(payload)),
+    getQualifiedMovie: (payload) => dispatch(getQualifiedMovie(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
