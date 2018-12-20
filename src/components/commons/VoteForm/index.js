@@ -65,15 +65,6 @@ class VoteForm extends Component {
         return (
             <Fragment>
                 <Form>
-                    <h3>Note globale</h3>
-                    <input 
-                        type="number" min="1" max="10" name="note"
-                        onChange={(e) => this.handleChange('grade', e.target.value)}
-                    />
-                    {!isMultiple && <button onClick={this.onSubmit}>Voter</button>}
-                </Form>
-                <Form>
-                    <h3>Note détaillée</h3>
                     <label htmlFor="acting">Jeu d'acteur</label>
                     <input 
                         type="number" min="1" max="10" name="acting"
@@ -93,6 +84,14 @@ class VoteForm extends Component {
                     <input 
                         type="number" min="1" max="10" name="esthetic"
                         onChange={(e) => this.handleChange('esthetic', e.target.value)}
+                    />
+                    {!isMultiple && <button onClick={this.onSubmit}>Voter</button>}
+                </Form>
+                <Form>
+                    <label>Note globale</label>
+                    <input 
+                        type="number" min="1" max="10" name="note"
+                        onChange={(e) => this.handleChange('grade', e.target.value)}
                     />
                     {!isMultiple && <button onClick={this.onSubmit}>Voter</button>}
                 </Form>

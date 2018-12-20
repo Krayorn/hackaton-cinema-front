@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import RegularLayout from '../../layouts/RegularLayout'
 import Movie from '../../components/movies/movie'
