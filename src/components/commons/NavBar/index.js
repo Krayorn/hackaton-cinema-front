@@ -25,12 +25,13 @@ class NavBar extends Component {
         return (
             <Container>
                 <Item to={'/'}>Home</Item>
+                <Item to={'/vote'}>Vote</Item>
                 <UserSection>
                     {
                         user
                         ? <Fragment>
                             <Item to={'/profile'}>{user.username}</Item>
-                            <FakeItem onClick={this.logout} >Logout</FakeItem>
+                            <FakeItem onClick={this.logout}>Logout</FakeItem>
                         </Fragment>
                         : <Fragment>
                             <Item to={'/login'}>Login</Item>
@@ -44,7 +45,7 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.auth.user
+    user: state.auth.user || JSON.parse(localStorage.getItem('user'))
 })
 
 const mapDispatchToProps = (dispatch) => ({

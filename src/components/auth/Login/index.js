@@ -45,7 +45,6 @@ class Login extends Component {
                 <Form>
                     <input onChange={(e) => this.handleChange('username', e.target.value)} type='text' placeholder='username' name='username'></input>
                     <input onChange={(e) => this.handleChange('password', e.target.value)} type='password' placeholder='password' name='password' />
-
                     <Button onClick={this.loginUser} text='Login !' />
                 </Form>
             </RegularLayout>

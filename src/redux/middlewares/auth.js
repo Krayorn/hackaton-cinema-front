@@ -1,4 +1,4 @@
-import { restPost, restGet, restDelete, restPatch } from '../../services/api.js'
+import { restPost, restDelete } from '../../services/api.js'
 
 const authMiddleware = {
     MDW_REGISTER: (payload, dispatch) => {

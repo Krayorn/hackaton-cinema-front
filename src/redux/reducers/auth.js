@@ -13,9 +13,12 @@ const auth = (state = { user: false, list: [], errors: [] }, action) => {
             })
 
         case 'LOGIN_OK':
+            const response = action.payload.response
+            localStorage.setItem('user', JSON.stringify({ token: response.token }))
+
             return Object.assign({}, state, {
-                user: action.payload.response,
-                erorrs: [],
+                user: response,
+                errors: []
             })
 
         case 'LOGIN_ERROR':
@@ -24,11 +27,15 @@ const auth = (state = { user: false, list: [], errors: [] }, action) => {
             })
 
         case 'LOGOUT':
+            localStorage.clear()
+
             return Object.assign({}, state, {
                 user: false
             })
 
         case 'DELETE_USER_OK':
+            localStorage.clear()
+
             return Object.assign({}, state, {
                 list: state.list.filter(user => user._id !== action.payload.response.data.id)
             })
